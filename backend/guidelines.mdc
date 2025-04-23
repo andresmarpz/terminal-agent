@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Package rules:
+- We are using 'uv' as a package/dependency manager
