@@ -14,3 +14,27 @@ services:
         - path: ./backend
           action: sync
           target: /app/backend
+
+  database:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: terminal_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - terminal_database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "terminal_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 3s
+
+volumes:
+  terminal_database:
+
+networks:
+  terminal_network:
+    driver: bridge
