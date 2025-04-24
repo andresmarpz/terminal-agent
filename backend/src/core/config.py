@@ -39,6 +39,9 @@ class Settings(BaseSettings):
     API_HOST: str = Field(default="0.0.0.0", description="API host")
     API_PORT: int = Field(default=8000, description="API port")
 
+    # API Key for authentication
+    API_KEY: str = Field(..., description="API key for authenticating requests")
+
     # PostgreSQL Database Settings
     DATABASE_URL: str = Field(..., description="PostgreSQL database URL")
 
