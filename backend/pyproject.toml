@@ -8,7 +8,42 @@ dependencies = [
     "fastapi>=0.115.12",
     "uvicorn[standard]>=0.30.5",
     "poethepoet>=0.27.0",
+    "sqlalchemy>=2.0.40",
+    "psycopg2-binary>=2.9.10",
+    "alembic>=1.15.2",
+]
+packages = [
+    { include = "src" },
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.7",
 ]
 
 [tool.poe.tasks]
 dev = "uvicorn src.app:app --port 4000 --reload"
+
+[tool.ruff]
+lint.select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort
+    "D",    # pydocstyle
+    "D401", # First line should be in imperative mood
+    "T201",
+    "UP",
+]
+lint.ignore = [
+    "UP006",
+    "UP007",
+    # We actually do want to import from typing_extensions
+    "UP035",
+    # Relax the convention by _not_ requiring documentation for every function parameter.
+    "D417",
+    "E501",
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "UP"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
