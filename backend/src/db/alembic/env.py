@@ -1,9 +1,13 @@
+"""Alembic environment file."""
+
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from alembic import context
 from src.db.base import Base
+
+# We import all models here to make sure they are registered in the metadata.
 from src.db.models import *  # noqa: F403
 
 # this is the Alembic Config object, which provides
