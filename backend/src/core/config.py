@@ -45,8 +45,8 @@ class Settings(BaseSettings):
     @field_validator("DATABASE_URL")
     def validate_database_url(cls, v: str) -> str:
         """Validate database URL."""
-        if not v or "postgres" not in v:
-            raise ValueError("DATABASE_URL must contain 'postgres'")
+        if not v or "postgresql" not in v:
+            raise ValueError("DATABASE_URL must contain 'postgresql'")
         return v
 
     # CORS Settings
