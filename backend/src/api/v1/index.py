@@ -12,3 +12,12 @@ async def index():
     Returns the API version.
     """
     return {"version": get_settings().API_VERSION}
+
+
+@api_router_v1.get("/protected")
+async def protected():
+    """Protected endpoint.
+
+    Returns a message.
+    """
+    return {"protected": "check"}
