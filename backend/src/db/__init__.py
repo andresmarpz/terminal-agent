@@ -1,8 +1,10 @@
-import os
+"""Database module."""
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+from src.core.config import get_settings
 
 from .base import Base  # noqa: E402  (circular import safe at runtime)
 
@@ -15,8 +17,7 @@ from .base import Base  # noqa: E402  (circular import safe at runtime)
 
 load_dotenv()
 
-DEFAULT_DB_URL = "postgresql+psycopg2://postgres:postgres@localhost:5432/terminal_db"
-DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DB_URL)
+DATABASE_URL = get_settings().DATABASE_URL
 
 # ---------------------------------------------------------------------------
 # SQLAlchemy engine & session factory

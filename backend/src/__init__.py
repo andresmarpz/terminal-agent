@@ -1,1 +1,1 @@
-"""Main src package initialisation."""
+"""Main src package initialization."""
