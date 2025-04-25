@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.api.v1.product_router import router as product_router
+from src.api.v1.products.product_router import router as product_router
 from src.core.config import get_settings
 
 api_router_v1 = APIRouter(prefix=get_settings().API_V1_STR)
