@@ -1,0 +1,4 @@
+export const env = {
+  AGENT_BASE_URL: process.env.NEXT_PUBLIC_AGENT_BASE_URL,
+  AGENT_ASSISTANT_ID: process.env.NEXT_PUBLIC_AGENT_ASSISTANT_ID,
+};
