@@ -3,12 +3,12 @@ name = "agent"
 version = "0.1.0"
 description = "Agent for the Coffee Delivery Service"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
+    "langchain-openai>=0.3.14",
     "langgraph>=0.3.34",
-]
-packages = [
-    { include = "src" },
+    "httpx>=0.28.1",
+    "uvicorn>=0.34.0",
 ]
 
 [dependency-groups]
@@ -20,7 +20,9 @@ dev = [
 ]
 
 [tool.poe.tasks]
+build-dockerfile = "langgraph dockerfile -c langgraph.json ./Dockerfile"
 dev = "langgraph dev"
+dev-api = "uvicorn src.main:app --port 4001 --reload"
 
 [tool.ruff]
 lint.select = [
