@@ -9,7 +9,7 @@ interface TerminalProps {
 
 export default function Terminal({ children }: TerminalProps) {
   return (
-    <div className="bg-zinc-900 w-full h-full flex flex-col font-mono">
+    <div className="bg-neutral-900 flex flex-col font-mono m-8 rounded-lg border-2 border-neutral-700 shadow-xl grow">
       {children}
     </div>
   );

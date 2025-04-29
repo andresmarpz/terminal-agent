@@ -1,7 +1,5 @@
-"use client";
-
 import TerminalChat from "~/components/terminal/TerminalChat";
 
-export default function NewThreadPage() {
+export default function ChatPage() {
   return <TerminalChat />;
 }
