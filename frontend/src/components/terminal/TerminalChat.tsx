@@ -61,7 +61,7 @@ export default function TerminalChat() {
     <Terminal>
       <div
         ref={messagesContainerRef}
-        className="flex flex-col gap-2 grow overflow-y-auto py-4"
+        className="flex flex-col gap-2 grow overflow-y-auto py-4 pr-2"
       >
         {messages.map((message, index) => (
           <Fragment key={message.id}>

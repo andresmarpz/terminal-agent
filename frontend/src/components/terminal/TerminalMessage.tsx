@@ -71,10 +71,10 @@ export default function TerminalMessage({ message }: { message: Message }) {
                 </a>
               ),
               ul: ({ children }) => (
-                <ul className="list-disc pl-5 mt-1">{children}</ul>
+                <ul className="list-disc pl-6 mt-1">{children}</ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal pl-5 mt-1">{children}</ol>
+                <ol className="list-decimal pl-6 mt-1">{children}</ol>
               ),
               li: ({ children }) => <li className="mt-0.5">{children}</li>,
               code: ({ children }) => (
