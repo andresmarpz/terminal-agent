@@ -2,7 +2,7 @@
 
 import { useStream } from "@langchain/langgraph-sdk/react";
 import { useQueryState } from "nuqs";
-import { Fragment, useCallback, useRef } from "react";
+import { Fragment, useCallback, useRef, useEffect } from "react";
 import { env } from "~/lib/constants";
 import Terminal from "./Terminal";
 import { TerminalInput } from "~/components/terminal/TerminalInput";
@@ -11,7 +11,14 @@ import TerminalMessage from "~/components/terminal/TerminalMessage";
 export default function TerminalChat() {
   const [threadId, setThreadId] = useQueryState("threadId");
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = useCallback(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  }, []);
 
   const { submit, messages, isLoading } = useStream({
     apiUrl: env.AGENT_BASE_URL,
@@ -22,6 +29,10 @@ export default function TerminalChat() {
       setThreadId(threadId);
     },
   });
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isLoading, scrollToBottom]);
 
   const handleSubmitMessage = useCallback(
     (content: string) => {
@@ -48,7 +59,10 @@ export default function TerminalChat() {
 
   return (
     <Terminal>
-      <div className="flex flex-col gap-2 grow overflow-y-auto py-4">
+      <div
+        ref={messagesContainerRef}
+        className="flex flex-col gap-2 grow overflow-y-auto py-4"
+      >
         {messages.map((message, index) => (
           <Fragment key={message.id}>
             <TerminalMessage message={message} />
@@ -66,8 +80,6 @@ export default function TerminalChat() {
       <hr className="border-t-zinc-700" />
 
       <TerminalInput onSubmit={handleSubmitMessage} />
-
-      <div ref={messagesEndRef} />
 
       <div className="bg-zinc-800 p-1 text-xs font-mono text-gray-400 flex justify-between border-t border-gray-700 flex-shrink-0">
         <div>
