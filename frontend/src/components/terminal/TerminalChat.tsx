@@ -2,7 +2,7 @@
 
 import { useStream } from "@langchain/langgraph-sdk/react";
 import { useQueryState } from "nuqs";
-import { useCallback, useRef } from "react";
+import { Fragment, useCallback, useRef } from "react";
 import { env } from "~/lib/constants";
 import Terminal from "./Terminal";
 import { TerminalInput } from "~/components/terminal/TerminalInput";
@@ -50,18 +50,21 @@ export default function TerminalChat() {
     <Terminal>
       <div className="flex flex-col gap-2 grow overflow-y-auto py-4">
         {messages.map((message, index) => (
-          <>
-            <TerminalMessage key={message.id} message={message} />
+          <Fragment key={message.id}>
+            <TerminalMessage message={message} />
             {(message.type === "human" ||
               messages[index + 1]?.type === "human") && (
               <hr className="border-t-zinc-700" />
             )}
-          </>
+          </Fragment>
         ))}
         {isLoading && messages[messages.length - 1].type === "human" && (
           <TerminalMessage message={{ type: "ai", content: "Thinking..." }} />
         )}
       </div>
+
+      <hr className="border-t-zinc-700" />
+
       <TerminalInput onSubmit={handleSubmitMessage} />
 
       <div ref={messagesEndRef} />

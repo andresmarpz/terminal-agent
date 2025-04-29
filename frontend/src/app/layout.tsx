@@ -34,7 +34,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen bg-neutral-900 text-sm`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen bg-neutral-900 text-sm p-8`}
       >
         <NuqsAdapter>{children}</NuqsAdapter>
       </body>

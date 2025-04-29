@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, KeyboardEvent, FormEvent, useRef } from "react";
+import { Textarea } from "~/components/ui/textarea";
 
 interface TerminalInputProps {
   onSubmit: (input: string) => void;
@@ -26,11 +27,8 @@ export function TerminalInput({ onSubmit }: TerminalInputProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full items-center py-2">
-      <div className="text-gray-500 text-right px-2 font-mono select-none">
-        {">"}
-      </div>
-      <textarea
+    <form onSubmit={handleSubmit} className="flex w-full p-2">
+      <Textarea
         ref={textareaRef}
         value={input}
         onChange={(e) => {
@@ -38,7 +36,7 @@ export function TerminalInput({ onSubmit }: TerminalInputProps) {
         }}
         onKeyDown={handleKeyDown}
         placeholder="Type your message..."
-        className="w-full bg-transparent text-gray-200 font-mono text-sm outline-none resize-none"
+        className="w-full bg-transparent text-gray-200 font-mono text-sm outline-none resize-none border-0"
         rows={1}
         spellCheck="false"
       />
