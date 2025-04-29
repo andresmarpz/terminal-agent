@@ -15,9 +15,6 @@ dependencies = [
     "pydantic-settings>=2.9.1",
     "httpx>=0.28.1",
 ]
-packages = [
-    { include = "src" },
-]
 
 [dependency-groups]
 dev = [

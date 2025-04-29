@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from src.api.middleware.api_key_middleware import register_api_key_middleware
 from src.api.v1.index import api_router_v1
 
-app = FastAPI()
+app = FastAPI(redirect_slashes=False)
 
 
 @app.get("/health")

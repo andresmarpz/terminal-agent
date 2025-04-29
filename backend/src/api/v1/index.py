@@ -23,4 +23,4 @@ async def protected():
 
     Returns a message.
     """
-    return {"protected": "check"}
+    return {"protected": True}

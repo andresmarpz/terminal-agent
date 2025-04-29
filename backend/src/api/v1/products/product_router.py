@@ -20,6 +20,7 @@ def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     return db_product
 
 
+@router.get("", response_model=List[ProductDTO])
 @router.get("/", response_model=List[ProductDTO])
 def get_products(db: Session = Depends(get_db)):
     """Get all products."""
