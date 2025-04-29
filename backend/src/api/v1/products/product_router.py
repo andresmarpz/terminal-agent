@@ -55,10 +55,3 @@ def update_product(
 def delete_product(product_id: int, db: Session = Depends(get_db)):
     """Delete a product by ID."""
     raise HTTPException(status_code=503, detail="Not implemented")
-
-    product = db.query(Product).filter(Product.id == product_id).first()
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
-    db.delete(product)
-    db.commit()
-    return {"detail": "Product deleted"}
