@@ -1,6 +1,11 @@
 "use client";
 
 import React, { useState, KeyboardEvent, FormEvent, useRef } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "~/components/ui/dropdown-menu";
 import { Textarea } from "~/components/ui/textarea";
 
 interface TerminalInputProps {
@@ -9,6 +14,7 @@ interface TerminalInputProps {
 
 export function TerminalInput({ onSubmit }: TerminalInputProps) {
   const [input, setInput] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSubmit = (e: FormEvent) => {
@@ -32,7 +38,15 @@ export function TerminalInput({ onSubmit }: TerminalInputProps) {
         ref={textareaRef}
         value={input}
         onChange={(e) => {
-          setInput(e.target.value);
+          const currentValue = e.target.value;
+
+          setInput(currentValue);
+
+          if (currentValue === "/") {
+            setMenuOpen(true);
+          } else {
+            setMenuOpen(false);
+          }
         }}
         onKeyDown={handleKeyDown}
         placeholder="Type your message..."
@@ -40,6 +54,12 @@ export function TerminalInput({ onSubmit }: TerminalInputProps) {
         rows={1}
         spellCheck="false"
       />
+
+      <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+        <DropdownMenuContent>
+          <DropdownMenuItem>Lets test!</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </form>
   );
 }
