@@ -1,9 +1,8 @@
 from langchain_core.tools import tool
-from langgraph.types import interrupt
 
-from src.graphs.agent.interrupts import ToolInterrupt
 from src.services.coffee_service import coffee_service
 from src.services.coffee_service_invoices import InvoiceItem
+from src.utils.add_tool_interrupt import HumanInterruptConfig, add_human_in_the_loop
 
 
 @tool()
@@ -12,7 +11,6 @@ async def check_coffee_service() -> bool:
     return await coffee_service.check_coffee_service()
 
 
-# Product tools
 @tool()
 async def get_products() -> list[dict]:
     """Get all coffee products from the Coffee Service."""
@@ -25,32 +23,30 @@ async def get_product_by_id(product_id: str) -> dict:
     return await coffee_service.products.get_product_by_id(product_id)
 
 
-# Client tools
 @tool()
 async def create_client(name: str, email: str, phone: str = None) -> dict:
     """Create a new client with the specified name, email, and optional phone number."""
     return await coffee_service.clients.create_client(name, email, phone)
 
 
-@tool()
-async def get_clients() -> list[dict]:
+@tool(
+    name_or_callable="get_clients",
+)
+async def _get_clients() -> list[dict]:
     """Get all clients from the Coffee Service."""
-    allowed_responses = ["Y", "n"]
-    allowed = interrupt(
-        value=ToolInterrupt(
-            tool_name="get_clients",
-            user_prompt="Can I really get the clients? (Y/n)",
-            allowed_responses=allowed_responses,
-        )
-    )
+    return await coffee_service.clients.get_clients()
 
-    if allowed not in allowed_responses:
-        return "Invalid response. Please respond with 'Y' or 'n'."
 
-    if allowed == "Y":
-        return await coffee_service.clients.get_clients()
-    else:
-        return "Client retrieval cancelled"
+get_clients = add_human_in_the_loop(
+    tool=_get_clients,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool()
@@ -73,24 +69,27 @@ async def delete_client(client_id: int) -> dict:
     return await coffee_service.clients.delete_client(client_id)
 
 
-# Invoice tools
-@tool()
-async def create_invoice(
+@tool(name_or_callable="create_invoice")
+async def _create_invoice(
     client_id: int, items: list[InvoiceItem], status: str = "pending"
 ) -> dict:
     """Create a new invoice with the specified client ID, items, and status.
 
     Each item in the items list should contain product_id, quantity, and unit_price.
     """
-    allowed = interrupt(
-        "Are you sure you want to create this invoice? (Y/n)",
-    )
-    print(f"Allowed: {allowed}")
+    return await coffee_service.invoices.create_invoice(client_id, items, status)
 
-    if allowed:
-        return await coffee_service.invoices.create_invoice(client_id, items, status)
-    else:
-        return "Invoice creation cancelled"
+
+create_invoice = add_human_in_the_loop(
+    tool=_create_invoice,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool()
