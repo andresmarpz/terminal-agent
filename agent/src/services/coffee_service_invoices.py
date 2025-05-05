@@ -26,15 +26,21 @@ class CoffeeServiceInvoices(CoffeeServiceBase):
         Returns:
             The created invoice data with items
         """
-        invoice_data = {"client_id": client_id, "status": status, "items": items}
+        invoice_data = {
+            "client_id": client_id,
+            "status": status,
+            "items": [item.model_dump() for item in items],
+        }
 
         try:
             response = await self.make_request(
                 "POST", "/api/v1/invoices", json=invoice_data, timeout=5.0
             )
+            print(f"Response: {response}")
             return response.json()
-        except Exception:
-            return {}
+        except Exception as e:
+            print(f"Error: {e}")
+            raise e
 
     async def get_invoices(self) -> List[Dict]:
         """Get all invoices.
