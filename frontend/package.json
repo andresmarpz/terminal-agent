@@ -12,6 +12,7 @@
     "@assistant-ui/react": "^0.10.5",
     "@assistant-ui/react-langgraph": "^0.5.3",
     "@langchain/core": "^0.3.48",
+    "@langchain/langgraph": "^0.2.68",
     "@langchain/langgraph-sdk": "^0.0.70",
     "@radix-ui/react-dropdown-menu": "^2.1.12",
     "@radix-ui/react-slot": "^1.2.0",

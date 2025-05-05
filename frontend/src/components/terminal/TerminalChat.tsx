@@ -8,23 +8,46 @@ import Terminal from "./Terminal";
 import { TerminalInput } from "~/components/terminal/TerminalInput";
 import TerminalMessage from "~/components/terminal/TerminalMessage";
 import TerminalInterrupt, {
-  InterruptValue,
-  SubmitMetadata,
+  isTerminalInterruptSchema,
+  InterruptResponse,
 } from "~/components/terminal/TerminalInterrupt";
 
-// Type guard to check if a value matches InterruptValue shape
-function isInterruptValue(value: unknown): value is InterruptValue {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "tool_name" in value &&
-    typeof value.tool_name === "string" &&
-    "user_prompt" in value &&
-    typeof value.user_prompt === "string" &&
-    "allowed_responses" in value &&
-    Array.isArray(value.allowed_responses)
-  );
-}
+const WelcomeMessage = () => (
+  <div className="terminal-welcome text-zinc-300 mb-4">
+    <div className="text-green-400 font-bold mb-2">
+      Welcome to Coffee Service Terminal v1.0.0
+    </div>
+    <p className="mb-2">
+      This is an AI-powered terminal interface for managing your coffee service
+      operations.
+    </p>
+
+    <div className="mb-2">
+      <div className="text-yellow-400 font-bold">How it works:</div>
+      <p>- Type your request in natural language</p>
+      <p>
+        - The agent will process your request and interact with the Coffee
+        Service API
+      </p>
+      <p>- You may be prompted to confirm certain actions</p>
+    </div>
+
+    <div className="mb-2">
+      <div className="text-yellow-400 font-bold">Example commands:</div>
+      <p>- &ldquo;Get all available coffee products&rdquo;</p>
+      <p>- &ldquo;Show me the list of clients&rdquo;</p>
+      <p>
+        - &ldquo;Create a new invoice for client samantha.carter@acmeinc.com,
+        she bought a Coffee Machine&rdquo;
+      </p>
+      <p>- &ldquo;Check all shipments for client ABC Coffee&rdquo;</p>
+    </div>
+
+    <p className="text-zinc-400 italic">
+      Type your request below and press Enter to begin.
+    </p>
+  </div>
+);
 
 export default function TerminalChat() {
   const [threadId, setThreadId] = useQueryState("threadId");
@@ -53,7 +76,8 @@ export default function TerminalChat() {
   }, [messages, isLoading, scrollToBottom]);
 
   const handleInterruptSubmit = useCallback(
-    (response: string) => {
+    (response: InterruptResponse) => {
+      console.log("Submitting interrupt response:", response);
       submit(undefined, { command: { resume: response } });
     },
     [submit]
@@ -62,7 +86,10 @@ export default function TerminalChat() {
   const handleSubmitMessage = useCallback(
     (content: string) => {
       if (interrupt?.resumable) {
-        handleInterruptSubmit(content);
+        handleInterruptSubmit({
+          type: "response",
+          args: content,
+        });
         return;
       }
 
@@ -82,37 +109,35 @@ export default function TerminalChat() {
         }
       );
     },
-    [messages, submit]
+    [messages, submit, interrupt, handleInterruptSubmit]
   );
-
-  // Check if the interrupt.value is a valid InterruptValue
-  const interruptValue =
-    interrupt?.value && isInterruptValue(interrupt.value)
-      ? interrupt.value
-      : null;
 
   return (
     <Terminal>
       <div
         ref={messagesContainerRef}
-        className="flex flex-col gap-2 grow overflow-y-auto py-4 pr-2"
+        className="flex flex-col gap-2 grow overflow-y-auto p-4 pr-2"
       >
-        {messages.map((message, index) => (
-          <Fragment key={message.id}>
-            <TerminalMessage message={message} />
-            {(message.type === "human" ||
-              messages[index + 1]?.type === "human") && (
-              <hr className="border-t-zinc-700" />
-            )}
-          </Fragment>
-        ))}
-        {isLoading && messages[messages.length - 1].type === "human" && (
-          <TerminalMessage message={{ type: "ai", content: "Thinking..." }} />
+        {messages.length === 0 ? (
+          <WelcomeMessage />
+        ) : (
+          messages.map((message, index) => (
+            <Fragment key={message.id}>
+              <TerminalMessage message={message} />
+              {(message.type === "human" ||
+                messages[index + 1]?.type === "human") && (
+                <hr className="border-t-zinc-700" />
+              )}
+            </Fragment>
+          ))
         )}
-        {interrupt?.resumable && interruptValue && (
+        {interrupt?.resumable && isTerminalInterruptSchema(interrupt.value) && (
           <TerminalInterrupt
-            prompt={interruptValue.user_prompt}
-            allowedResponses={interruptValue.allowed_responses}
+            interrupt={
+              Array.isArray(interrupt.value)
+                ? interrupt.value[0]
+                : interrupt.value
+            }
             onSelectResponse={handleInterruptSubmit}
           />
         )}

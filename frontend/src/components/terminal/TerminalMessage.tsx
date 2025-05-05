@@ -23,8 +23,6 @@ const LABEL_MAP: Record<Message["type"], string> = {
 };
 
 export default function TerminalMessage({ message }: { message: Message }) {
-  console.log(message);
-
   const formattedContent = (): string[] => {
     const flatContent =
       typeof message.content === "string"
@@ -126,7 +124,7 @@ export default function TerminalMessage({ message }: { message: Message }) {
     <>
       <div
         className={cn(
-          "flex flex-col text-sm font-mono group hover:bg-zinc-800 py-1 pl-3 border-l-2 ml-2 text-white",
+          "flex flex-col text-sm font-mono group hover:bg-zinc-800 py-1 pl-3 border-l-2 text-white",
           TYPE_COLOR_MAP[message.type]
         )}
       >
