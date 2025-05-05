@@ -71,8 +71,29 @@ Here are brainstormed features, grouped by the primary AI capability they exerci
 - **Proactive Ordering:** Learn client ordering patterns (e.g., Client X orders Blend Y every 2 weeks). Agent could prompt the user: "It's been nearly two weeks since Client X's last order of Blend Y. Shall I create a new shipment?" (Requires HITL).
 - **Optimized Tool Selection:** Use feedback/success rates to teach the agent the most efficient sequence of tools to fulfill complex requests.
 
-## 4. Next Steps
+## 4. AI-Enhanced Frontend Ideas
 
-1.  **Prioritize:** Review these ideas and select a small set (1-3) to implement first, focusing on core agent capabilities. Perhaps start with more tools, basic HITL (confirmation), and simple memory (remembering a favorite).
+Building upon the agent's capabilities, the frontend can offer more than just basic forms and data display. Here are ideas for AI-enhanced screens and components:
+
+- **AI-Powered Dashboard:**
+  - **Proactive Insights Widget:** Displays agent-generated insights: "⚠️ 3 SLA issues detected...", "📈 Client 'ACME Corp' order frequency increased...", "📉 Inventory low for 'Dark Roast Blend'...". _(Connects to Enhanced Tools, Data Retrieval)_.
+  - **Personalized Recommendations:** Suggests actions: "Order your favorite 'Espresso Blend'?", "Customers similar to 'Client B' also enjoy 'Breakfast Blend'.". _(Connects to Memory, RL potential)_.
+- **Smart Client Management Screen:**
+  - **Contextual Action Suggestions:** When viewing client details, agent suggests actions: "Send follow-up?", "Create recurring order?", "Offer discount?". _(Connects to Memory, Enhanced Tools)_.
+  - **AI-Generated Client Summary:** Natural language summary of client status, orders, issues. _(Connects to Data Retrieval, Memory)_.
+- **Intelligent Order Creation Form:**
+  - **Fuzzy Product/Client Search:** Use agent's fuzzy search tools (`search_clients`, `search_products`) for smart suggestions. _(Connects to Advanced Data Retrieval)_.
+  - **Automated Detail Filling:** Pre-fill form based on memory ("Order my usual"). _(Connects to Memory)_.
+  - **Real-time Inventory Check:** Show product availability instantly via `check_inventory`. _(Connects to Enhanced Tools)_.
+- **Shipment Tracking View with AI Context:**
+  - **Integrated SLA Status:** Show tracking info alongside related SLA issues and agent-suggested resolutions. _(Connects to Enhanced Tools, HITL)_.
+  - **Natural Language Updates:** Translate raw tracking data into easy updates: "Shipment 123 is out for delivery...". _(Connects to Agent's core LLM capability)_.
+- **Feedback Integration:**
+  - **Inline Feedback:** Thumbs up/down icons next to agent responses/summaries.
+  - **Dedicated Feedback/Review Screen:** View past feedback and agent performance metrics.
+
+## 5. Next Steps (Renumbered)
+
+1.  **Prioritize:** Review these ideas (backend, agent, frontend) and select a small set (1-3) to implement first. Perhaps start with more backend tools, basic HITL (confirmation), simple memory (remembering a favorite), and a corresponding simple frontend enhancement (e.g., displaying memory in the order form).
 2.  **Design:** Detail the implementation for the chosen features (API changes, agent logic, frontend UI).
 3.  **Implement:** Build the features incrementally.
