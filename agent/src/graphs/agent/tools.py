@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 
 from src.services.coffee_service import coffee_service
 from src.services.coffee_service_invoices import InvoiceItem
-from src.utils.add_tool_interrupt import HumanInterruptConfig, add_human_in_the_loop
+from src.utils.add_human_in_the_loop import HumanInterruptConfig, add_human_in_the_loop
 
 
 @tool()
@@ -23,22 +23,16 @@ async def get_product_by_id(product_id: str) -> dict:
     return await coffee_service.products.get_product_by_id(product_id)
 
 
-@tool()
-async def create_client(name: str, email: str, phone: str = None) -> dict:
+@tool(
+    name_or_callable="create_client",
+)
+async def _create_client(name: str, email: str, phone: str = None) -> dict:
     """Create a new client with the specified name, email, and optional phone number."""
     return await coffee_service.clients.create_client(name, email, phone)
 
 
-@tool(
-    name_or_callable="get_clients",
-)
-async def _get_clients() -> list[dict]:
-    """Get all clients from the Coffee Service."""
-    return await coffee_service.clients.get_clients()
-
-
-get_clients = add_human_in_the_loop(
-    tool=_get_clients,
+create_client = add_human_in_the_loop(
+    tool=_create_client,
     interrupt_config=HumanInterruptConfig(
         allow_accept=True,
         allow_edit=True,
@@ -50,23 +44,57 @@ get_clients = add_human_in_the_loop(
 
 
 @tool()
+async def get_clients() -> list[dict]:
+    """Get all clients from the Coffee Service."""
+    return await coffee_service.clients.get_clients()
+
+
+@tool()
 async def get_client_by_id(client_id: int) -> dict:
     """Get a client by its ID from the Coffee Service."""
     return await coffee_service.clients.get_client(client_id)
 
 
-@tool()
-async def update_client(
+@tool(
+    name_or_callable="update_client",
+)
+async def _update_client(
     client_id: int, name: str = None, email: str = None, phone: str = None
 ) -> dict:
     """Update a client's information by its ID."""
     return await coffee_service.clients.update_client(client_id, name, email, phone)
 
 
-@tool()
-async def delete_client(client_id: int) -> dict:
+update_client = add_human_in_the_loop(
+    tool=_update_client,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
+
+
+@tool(
+    name_or_callable="delete_client",
+)
+async def _delete_client(client_id: int) -> dict:
     """Delete a client by its ID."""
     return await coffee_service.clients.delete_client(client_id)
+
+
+delete_client = add_human_in_the_loop(
+    tool=_delete_client,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool(name_or_callable="create_invoice")
@@ -104,10 +132,24 @@ async def get_invoice_by_id(invoice_id: int) -> dict:
     return await coffee_service.invoices.get_invoice(invoice_id)
 
 
-@tool()
-async def update_invoice(invoice_id: int, status: str) -> dict:
+@tool(
+    name_or_callable="update_invoice",
+)
+async def _update_invoice(invoice_id: int, status: str) -> dict:
     """Update the status of an invoice by its ID."""
     return await coffee_service.invoices.update_invoice(invoice_id, status)
+
+
+update_invoice = add_human_in_the_loop(
+    tool=_update_invoice,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool()
@@ -116,19 +158,47 @@ async def get_invoices_by_client(client_id: int) -> list[dict]:
     return await coffee_service.invoices.get_invoices_by_client(client_id)
 
 
-@tool()
-async def delete_invoice(invoice_id: int) -> dict:
+@tool(
+    name_or_callable="delete_invoice",
+)
+async def _delete_invoice(invoice_id: int) -> dict:
     """Delete an invoice by its ID."""
     return await coffee_service.invoices.delete_invoice(invoice_id)
 
 
+delete_invoice = add_human_in_the_loop(
+    tool=_delete_invoice,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
+
+
 # Shipment tools
-@tool()
-async def create_shipment(
+@tool(
+    name_or_callable="create_shipment",
+)
+async def _create_shipment(
     invoice_id: int, client_id: int, status: str = "pending"
 ) -> dict:
     """Create a new shipment with the specified invoice ID, client ID, and status."""
     return await coffee_service.shipments.create_shipment(invoice_id, client_id, status)
+
+
+create_shipment = add_human_in_the_loop(
+    tool=_create_shipment,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool()
@@ -143,10 +213,24 @@ async def get_shipment_by_id(shipment_id: int) -> dict:
     return await coffee_service.shipments.get_shipment_by_id(shipment_id)
 
 
-@tool()
-async def update_shipment(shipment_id: int, status: str) -> dict:
+@tool(
+    name_or_callable="update_shipment",
+)
+async def _update_shipment(shipment_id: int, status: str) -> dict:
     """Update the status of a shipment by its ID."""
     return await coffee_service.shipments.update_shipment(shipment_id, status)
+
+
+update_shipment = add_human_in_the_loop(
+    tool=_update_shipment,
+    interrupt_config=HumanInterruptConfig(
+        allow_accept=True,
+        allow_edit=True,
+        allow_ignore=False,
+        allow_respond=False,
+        allow_deny=True,
+    ),
+)
 
 
 @tool()
