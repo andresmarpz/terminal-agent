@@ -1,5 +1,6 @@
 # Python
 __pycache__
+.venv
 
 # LangGraph
 .langgraph_api
