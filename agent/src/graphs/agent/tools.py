@@ -1,5 +1,7 @@
 from langchain_core.tools import tool
+from langgraph.types import interrupt
 
+from src.graphs.agent.interrupts import ToolInterrupt
 from src.services.coffee_service import coffee_service
 from src.services.coffee_service_invoices import InvoiceItem
 
@@ -33,7 +35,22 @@ async def create_client(name: str, email: str, phone: str = None) -> dict:
 @tool()
 async def get_clients() -> list[dict]:
     """Get all clients from the Coffee Service."""
-    return await coffee_service.clients.get_clients()
+    allowed_responses = ["Y", "n"]
+    allowed = interrupt(
+        value=ToolInterrupt(
+            tool_name="get_clients",
+            user_prompt="Can I really get the clients? (Y/n)",
+            allowed_responses=allowed_responses,
+        )
+    )
+
+    if allowed not in allowed_responses:
+        return "Invalid response. Please respond with 'Y' or 'n'."
+
+    if allowed == "Y":
+        return await coffee_service.clients.get_clients()
+    else:
+        return "Client retrieval cancelled"
 
 
 @tool()
@@ -65,7 +82,15 @@ async def create_invoice(
 
     Each item in the items list should contain product_id, quantity, and unit_price.
     """
-    return await coffee_service.invoices.create_invoice(client_id, items, status)
+    allowed = interrupt(
+        "Are you sure you want to create this invoice? (Y/n)",
+    )
+    print(f"Allowed: {allowed}")
+
+    if allowed:
+        return await coffee_service.invoices.create_invoice(client_id, items, status)
+    else:
+        return "Invoice creation cancelled"
 
 
 @tool()
