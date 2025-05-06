@@ -42,7 +42,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow">
         {/* Coffee Products Section - Tall vertical rectangle */}
-        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2 flex flex-col">
+        <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2 flex flex-col">
           <CardHeader>
             <CardTitle className="text-orange-500">COFFEE INVENTORY</CardTitle>
           </CardHeader>
@@ -52,7 +52,7 @@ export default async function Home() {
         </Card>
 
         {/* Terminal Chat - Main focus in the middle */}
-        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6 flex flex-col">
+        <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6 flex flex-col">
           <CardHeader>
             <CardTitle className="text-orange-500">TERMINAL CHAT</CardTitle>
           </CardHeader>
@@ -121,7 +121,7 @@ export default async function Home() {
         {/* Top right section */}
         <div className="lg:col-span-3 grid grid-cols-1 gap-6">
           {/* Recent Clients */}
-          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
+          <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
             <CardHeader>
               <CardTitle className="text-orange-500">RECENT CLIENTS</CardTitle>
             </CardHeader>
@@ -165,7 +165,7 @@ export default async function Home() {
           </Card>
 
           {/* Shipments */}
-          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
+          <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
             <CardHeader>
               <CardTitle className="text-orange-500">
                 SHIPMENT TRACKER
@@ -221,7 +221,7 @@ export default async function Home() {
         {/* Bottom section */}
         <div className="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Invoice Table - Smaller */}
-          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
+          <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
             <CardHeader>
               <CardTitle className="text-orange-500">INVOICES</CardTitle>
             </CardHeader>
@@ -281,7 +281,7 @@ export default async function Home() {
           </Card>
 
           {/* Additional Data Card */}
-          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
+          <Card className="border-1 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
             <CardHeader>
               <CardTitle className="text-orange-500">SYSTEM STATUS</CardTitle>
             </CardHeader>
