@@ -1,8 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
+import { coffeeService } from "~/lib/services/coffee-service";
+import Image from "next/image";
 
-export default function Home() {
+async function getProducts() {
+  return coffeeService.getProducts();
+}
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <div className="min-h-screen flex flex-col bg-black text-[#f5f5dc] p-6 font-mono">
       <header className="mb-6">
@@ -39,39 +47,35 @@ export default function Home() {
             <CardTitle className="text-orange-500">COFFEE INVENTORY</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-5">
-            {[
-              {
-                name: "ETHIOPIAN YIRGACHEFFE",
-                stock: 152,
-                price: 24.99,
-                image: "☕",
-              },
-              {
-                name: "COLOMBIAN SUPREMO",
-                stock: 89,
-                price: 19.5,
-                image: "☕",
-              },
-              { name: "KENYAN AA", stock: 45, price: 27.99, image: "☕" },
-              {
-                name: "SUMATRA MANDHELING",
-                stock: 67,
-                price: 22.5,
-                image: "☕",
-              },
-            ].map((product, i) => (
-              <div key={i} className="border border-gray-700/70 p-3 rounded-sm">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="border border-gray-700/70 p-3 rounded-sm"
+              >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="text-4xl text-orange-400">
-                    {product.image}
-                  </div>
+                  {product.image ? (
+                    <div className="h-14 w-14 relative">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-4xl text-orange-400">☕</div>
+                  )}
                   <div>
-                    <h3 className="text-[#f5f5dc] font-bold">{product.name}</h3>
-                    <p className="text-orange-400 text-lg">${product.price}</p>
+                    <h3 className="text-[#f5f5dc] font-bold uppercase">
+                      {product.name}
+                    </h3>
+                    <p className="text-orange-400 text-lg">
+                      ${product.price.toFixed(2)}
+                    </p>
                   </div>
                 </div>
                 <div className="text-gray-400 text-sm">
-                  <span>STOCK: {product.stock} UNITS</span>
+                  <span>{product.description}</span>
                 </div>
               </div>
             ))}
