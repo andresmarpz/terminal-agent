@@ -4,9 +4,9 @@ import { Textarea } from "~/components/ui/textarea";
 
 export default function Home() {
   return (
-    <div className="h-screen bg-black text-[#f5f5dc] p-6 font-mono">
+    <div className="min-h-screen flex flex-col bg-black text-[#f5f5dc] p-6 font-mono">
       <header className="mb-6">
-        <div className="flex justify-between items-center border-b border-orange-500/30 pb-3">
+        <div className="flex justify-between items-center border-b-2 border-orange-500/50 pb-3">
           <div>
             <h1 className="text-2xl font-bold text-orange-500">
               TERMINAL COFFEE SYSTEM
@@ -32,9 +32,9 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow">
         {/* Coffee Products Section - Tall vertical rectangle */}
-        <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2">
+        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2">
           <CardHeader>
             <CardTitle className="text-orange-500">COFFEE INVENTORY</CardTitle>
           </CardHeader>
@@ -60,7 +60,7 @@ export default function Home() {
                 image: "☕",
               },
             ].map((product, i) => (
-              <div key={i} className="border border-gray-700 p-3 rounded-sm">
+              <div key={i} className="border border-gray-700/70 p-3 rounded-sm">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="text-4xl text-orange-400">
                     {product.image}
@@ -79,12 +79,12 @@ export default function Home() {
         </Card>
 
         {/* Terminal Chat - Main focus in the middle */}
-        <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
+        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6 flex flex-col">
           <CardHeader>
             <CardTitle className="text-orange-500">TERMINAL CHAT</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="h-[400px] overflow-y-auto mb-3 p-3 border border-gray-700 bg-black/50 rounded-sm">
+          <CardContent className="flex-grow flex flex-col">
+            <div className="flex-grow overflow-y-auto mb-3 p-3 border border-gray-700/70 bg-black/50 rounded-sm">
               <div className="space-y-4">
                 <div className="text-[#f5f5dc]">
                   <span className="text-xs text-orange-500">
@@ -134,7 +134,7 @@ export default function Home() {
             </div>
             <div className="flex gap-2">
               <Textarea
-                className="resize-none bg-black border-gray-700 text-[#f5f5dc] placeholder:text-gray-500"
+                className="resize-none bg-black border-gray-700/70 text-[#f5f5dc] placeholder:text-gray-500"
                 placeholder="Enter command..."
                 rows={2}
               />
@@ -148,7 +148,7 @@ export default function Home() {
         {/* Top right section */}
         <div className="lg:col-span-3 grid grid-cols-1 gap-6">
           {/* Recent Clients */}
-          <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
+          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
             <CardHeader>
               <CardTitle className="text-orange-500">RECENT CLIENTS</CardTitle>
             </CardHeader>
@@ -173,7 +173,7 @@ export default function Home() {
                 ].map((client, i) => (
                   <li
                     key={i}
-                    className="flex justify-between border-b border-dashed border-gray-700 pb-1"
+                    className="flex justify-between border-b border-dashed border-gray-700/70 pb-1"
                   >
                     <span className="text-[#f5f5dc]">{client.name}</span>
                     <span
@@ -192,7 +192,7 @@ export default function Home() {
           </Card>
 
           {/* Shipments */}
-          <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
+          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)]">
             <CardHeader>
               <CardTitle className="text-orange-500">
                 SHIPMENT TRACKER
@@ -216,7 +216,7 @@ export default function Home() {
                 ].map((shipment, i) => (
                   <div
                     key={i}
-                    className="border border-gray-700 p-2 rounded-sm bg-black/50"
+                    className="border border-gray-700/70 p-2 rounded-sm bg-black/50"
                   >
                     <div className="flex justify-between text-xs text-gray-400">
                       <span>ID: {shipment.id}</span>
@@ -248,7 +248,7 @@ export default function Home() {
         {/* Bottom section */}
         <div className="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Invoice Table - Smaller */}
-          <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
+          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
             <CardHeader>
               <CardTitle className="text-orange-500">INVOICES</CardTitle>
             </CardHeader>
@@ -308,33 +308,33 @@ export default function Home() {
           </Card>
 
           {/* Additional Data Card */}
-          <Card className="border-gray-700 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
+          <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-6">
             <CardHeader>
               <CardTitle className="text-orange-500">SYSTEM STATUS</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="border border-gray-700 p-2 rounded-sm">
+                  <div className="border border-gray-700/70 p-2 rounded-sm">
                     <div className="text-gray-400 text-xs">UPTIME</div>
                     <div className="text-[#f5f5dc] font-mono">
                       34d:12h:45m:21s
                     </div>
                   </div>
-                  <div className="border border-gray-700 p-2 rounded-sm">
+                  <div className="border border-gray-700/70 p-2 rounded-sm">
                     <div className="text-gray-400 text-xs">CPU USAGE</div>
                     <div className="text-orange-400 font-mono">24%</div>
                   </div>
-                  <div className="border border-gray-700 p-2 rounded-sm">
+                  <div className="border border-gray-700/70 p-2 rounded-sm">
                     <div className="text-gray-400 text-xs">MEMORY</div>
                     <div className="text-orange-400 font-mono">1.2GB/4GB</div>
                   </div>
-                  <div className="border border-gray-700 p-2 rounded-sm">
+                  <div className="border border-gray-700/70 p-2 rounded-sm">
                     <div className="text-gray-400 text-xs">API STATUS</div>
                     <div className="text-[#f5f5dc] font-mono">OPERATIONAL</div>
                   </div>
                 </div>
-                <div className="border border-gray-700 p-2 rounded-sm">
+                <div className="border border-gray-700/70 p-2 rounded-sm">
                   <div className="text-gray-400 text-xs">LAST BACKUP</div>
                   <div className="flex justify-between items-center">
                     <span className="text-[#f5f5dc] font-mono">
@@ -349,7 +349,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="mt-6 border-t border-gray-700 pt-3 text-xs text-gray-500">
+      <footer className="mt-6 border-t-2 border-gray-700 pt-3 text-xs text-gray-500">
         <div className="flex justify-between">
           <span>TERMINAL COFFEE SYSTEM v1.0.5</span>
           <span>AUTHORIZED ACCESS ONLY • MONITORING ACTIVE</span>
