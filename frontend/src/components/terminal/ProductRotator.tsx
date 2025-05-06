@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Product } from "~/lib/services/coffee-service";
 
@@ -11,22 +11,46 @@ interface ProductRotatorProps {
 export function ProductRotator({ products }: ProductRotatorProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
+  const resetTimer = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+
     if (products.length <= 1) return;
 
-    const interval = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setIsTransitioning(true);
 
       // Wait for fade out before changing index
       setTimeout(() => {
         setActiveIndex((prevIndex) => (prevIndex + 1) % products.length);
         setIsTransitioning(false);
-      }, 500); // Half of the transition time for fading out
+      }, 500);
     }, 4000);
+  };
 
-    return () => clearInterval(interval);
-  }, [products.length]);
+  const handleDotClick = (index: number) => {
+    if (index === activeIndex) return;
+
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setActiveIndex(index);
+      setIsTransitioning(false);
+      resetTimer();
+    }, 500);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [products.length, resetTimer]);
 
   if (products.length === 0) {
     return <div className="text-gray-400">No products available</div>;
@@ -68,11 +92,12 @@ export function ProductRotator({ products }: ProductRotatorProps) {
           </div>
         </div>
         <div className="mt-auto pt-4 flex justify-center">
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             {products.map((_, index) => (
               <div
                 key={index}
-                className={`h-2 w-2 rounded-full ${
+                onClick={() => handleDotClick(index)}
+                className={`h-2 w-2 rounded-full cursor-pointer hover:opacity-80 transition-opacity ${
                   index === activeIndex ? "bg-orange-500" : "bg-gray-700"
                 }`}
               />
