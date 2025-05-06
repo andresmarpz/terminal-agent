@@ -13,6 +13,7 @@ class Product(Base):
     name: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     description: Mapped[str | None] = mapped_column(Text)
     price: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
+    image: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
     def __repr__(self) -> str:  # pragma: no cover - debugging convenience
         return f"<Product(id={self.id}, name={self.name!r})>"

@@ -9,7 +9,6 @@ Create Date: 2025-04-24 15:53:01.489746
 from typing import Sequence, Union
 
 import sqlalchemy as sa
-
 from alembic import op
 
 # revision identifiers, used by Alembic.
@@ -40,6 +39,7 @@ def upgrade() -> None:
         sa.Column("name", sa.String(length=255), nullable=False),
         sa.Column("description", sa.Text(), nullable=True),
         sa.Column("price", sa.Numeric(precision=10, scale=2), nullable=False),
+        sa.Column("image", sa.String(length=255), nullable=True),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("name"),
     )

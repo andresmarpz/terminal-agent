@@ -9,6 +9,7 @@ class ProductCreate(BaseModel):
     name: str = Field(..., max_length=255)
     description: Optional[str] = None
     price: float
+    image: Optional[str] = None
 
 
 class ProductUpdate(BaseModel):
@@ -17,6 +18,7 @@ class ProductUpdate(BaseModel):
     name: Optional[str] = Field(None, max_length=255)
     description: Optional[str] = None
     price: Optional[float] = None
+    image: Optional[str] = None
 
 
 class ProductDTO(BaseModel):
@@ -26,6 +28,7 @@ class ProductDTO(BaseModel):
     name: str
     description: Optional[str]
     price: float
+    image: Optional[str]
 
     class Config:
         """Config for the ProductDTO."""
