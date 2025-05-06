@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
 import { coffeeService } from "~/lib/services/coffee-service";
-import Image from "next/image";
+import { ProductRotator } from "~/components/terminal/ProductRotator";
 
 async function getProducts() {
   return coffeeService.getProducts();
@@ -42,43 +42,12 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow">
         {/* Coffee Products Section - Tall vertical rectangle */}
-        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2">
+        <Card className="border-2 border-gray-600 bg-black shadow-[0_0_10px_rgba(255,165,0,0.1)] lg:col-span-3 lg:row-span-2 flex flex-col">
           <CardHeader>
             <CardTitle className="text-orange-500">COFFEE INVENTORY</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-5">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="border border-gray-700/70 p-3 rounded-sm"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  {product.image ? (
-                    <div className="h-14 w-14 relative">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  ) : (
-                    <div className="text-4xl text-orange-400">☕</div>
-                  )}
-                  <div>
-                    <h3 className="text-[#f5f5dc] font-bold uppercase">
-                      {product.name}
-                    </h3>
-                    <p className="text-orange-400 text-lg">
-                      ${product.price.toFixed(2)}
-                    </p>
-                  </div>
-                </div>
-                <div className="text-gray-400 text-sm">
-                  <span>{product.description}</span>
-                </div>
-              </div>
-            ))}
+          <CardContent className="flex-grow">
+            <ProductRotator products={products} />
           </CardContent>
         </Card>
 
