@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Product } from "~/lib/services/coffee-service";
 
@@ -13,7 +13,7 @@ export function ProductRotator({ products }: ProductRotatorProps) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const resetTimer = () => {
+  const resetTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
     }
@@ -29,7 +29,7 @@ export function ProductRotator({ products }: ProductRotatorProps) {
         setIsTransitioning(false);
       }, 500);
     }, 4000);
-  };
+  }, [products]);
 
   const handleDotClick = (index: number) => {
     if (index === activeIndex) return;
