@@ -50,7 +50,7 @@ export function TerminalInput({ onSubmit }: TerminalInputProps) {
         }}
         onKeyDown={handleKeyDown}
         placeholder="Type your message..."
-        className="w-full bg-transparent text-gray-200 font-mono text-sm outline-none resize-none border-0"
+        className="w-full bg-transparent text-neutral-200 font-mono text-sm outline-none resize-none border-0"
         rows={1}
         spellCheck="false"
       />

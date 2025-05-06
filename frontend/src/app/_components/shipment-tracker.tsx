@@ -24,9 +24,9 @@ export default function ShipmentTracker() {
           ].map((shipment, i) => (
             <div
               key={i}
-              className="border border-gray-700/50 border-dashed p-2 rounded-sm bg-black/50"
+              className="border border-neutral-700/50 border-dashed p-2 rounded-sm bg-black/50"
             >
-              <div className="flex justify-between text-xs text-gray-400">
+              <div className="flex justify-between text-xs text-neutral-400">
                 <span>ID: {shipment.id}</span>
                 <span>ETA: {shipment.eta}</span>
               </div>
@@ -38,7 +38,7 @@ export default function ShipmentTracker() {
                       ? "text-orange-400"
                       : shipment.status === "IN TRANSIT"
                       ? "text-[#f5f5dc]"
-                      : "text-gray-400"
+                      : "text-neutral-400"
                   }
                 >
                   {shipment.status}

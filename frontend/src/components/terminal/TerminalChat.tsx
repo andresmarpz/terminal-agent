@@ -144,12 +144,12 @@ export default function TerminalChat() {
       </div>
       <hr className="border-t-zinc-700" />
       <TerminalInput onSubmit={handleSubmitMessage} />
-      <div className="bg-zinc-800 p-1 text-xs font-mono text-gray-400 flex justify-between border-t border-gray-700 flex-shrink-0">
+      <div className="bg-zinc-800 p-1 text-xs font-mono text-neutral-400 flex justify-between border-t border-neutral-700 flex-shrink-0">
         <div>
           <span className="mr-2">ctrl+? help</span>
           <span>Tokens: 0, Cost: $0.00</span>
         </div>
-        <div className="text-gray-500">
+        <div className="text-neutral-500">
           press <span className="text-white font-bold">enter</span> to send the
           message, write <span className="text-white font-bold">\</span> and
           enter to add a new line

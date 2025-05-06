@@ -239,7 +239,7 @@ export default function TerminalInterrupt({
         <select
           value={String(item.value)}
           onChange={(e) => handleArgValueChange(item.path, e.target.value)}
-          className="bg-gray-800 text-white p-1 rounded w-auto min-w-[80px]"
+          className="bg-neutral-800 text-white p-1 rounded w-auto min-w-[80px]"
         >
           <option value="true">true</option>
           <option value="false">false</option>
@@ -251,7 +251,7 @@ export default function TerminalInterrupt({
           type="number"
           value={String(item.value)}
           onChange={(e) => handleArgValueChange(item.path, e.target.value)}
-          className="bg-gray-800 text-white p-1 rounded w-auto min-w-[80px]"
+          className="bg-neutral-800 text-white p-1 rounded w-auto min-w-[80px]"
         />
       );
     } else {
@@ -260,7 +260,7 @@ export default function TerminalInterrupt({
           type="text"
           value={String(item.value)}
           onChange={(e) => handleArgValueChange(item.path, e.target.value)}
-          className="bg-gray-800 text-white p-1 rounded w-auto min-w-[120px]"
+          className="bg-neutral-800 text-white p-1 rounded w-auto min-w-[120px]"
         />
       );
     }
@@ -338,7 +338,7 @@ export default function TerminalInterrupt({
       );
     } else {
       return (
-        <div className="text-gray-400">No editable arguments available</div>
+        <div className="text-neutral-400">No editable arguments available</div>
       );
     }
   };
@@ -444,7 +444,7 @@ export default function TerminalInterrupt({
       <div className="text-yellow-400">$ {prompt}</div>
 
       {/* Display the command arguments */}
-      <div className="bg-gray-900 p-2 rounded border border-gray-700 text-xs">
+      <div className="bg-neutral-900 p-2 rounded border border-neutral-700 text-xs">
         <div className="text-blue-400 mb-1">Command arguments:</div>
         <pre className="text-white whitespace-pre-wrap overflow-auto max-h-40">
           {formatArgs()}
@@ -457,7 +457,7 @@ export default function TerminalInterrupt({
             <div
               key={index}
               onClick={() => handleResponseSelection(response)}
-              className="cursor-pointer hover:bg-gray-800 px-2 py-0.5"
+              className="cursor-pointer hover:bg-neutral-800 px-2 py-0.5"
             >
               <span className="text-green-400">[{index + 1}]</span>{" "}
               <span className="text-white">{response}</span>
@@ -469,7 +469,7 @@ export default function TerminalInterrupt({
       {showEditInput && (
         <div className="flex flex-col gap-2">
           <div className="text-white mb-2">Edit arguments:</div>
-          <div className="bg-gray-900 p-3 rounded border border-gray-700 text-xs">
+          <div className="bg-neutral-900 p-3 rounded border border-neutral-700 text-xs">
             {renderEditableJSON()}
           </div>
           <div className="flex gap-2 mt-2">
@@ -480,13 +480,13 @@ export default function TerminalInterrupt({
               Submit
             </button>
             <button
-              className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded"
+              className="bg-neutral-600 hover:bg-neutral-700 text-white px-3 py-1 rounded"
               onClick={() => setShowEditInput(false)}
             >
               Cancel
             </button>
           </div>
-          <div className="text-gray-500 text-xs mt-1">
+          <div className="text-neutral-500 text-xs mt-1">
             Note: To add items to arrays, please use the Respond option instead.
           </div>
         </div>
@@ -496,7 +496,7 @@ export default function TerminalInterrupt({
         <div className="flex flex-col gap-2">
           <div className="text-white">Enter your response:</div>
           <textarea
-            className="bg-gray-800 text-white p-2 rounded"
+            className="bg-neutral-800 text-white p-2 rounded"
             rows={5}
             value={userResponse}
             onChange={(e) => setUserResponse(e.target.value)}
@@ -509,7 +509,7 @@ export default function TerminalInterrupt({
               Submit
             </button>
             <button
-              className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded"
+              className="bg-neutral-600 hover:bg-neutral-700 text-white px-3 py-1 rounded"
               onClick={() => setShowResponseInput(false)}
             >
               Cancel
@@ -519,7 +519,7 @@ export default function TerminalInterrupt({
       )}
 
       {!showEditInput && !showResponseInput && (
-        <div className="text-gray-500 text-xs mt-2">
+        <div className="text-neutral-500 text-xs mt-2">
           Click an option to continue...
         </div>
       )}

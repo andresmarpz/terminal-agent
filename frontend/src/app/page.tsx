@@ -1,6 +1,6 @@
 import { Button } from "~/components/ui/button";
 import { coffeeService } from "~/lib/services/coffee-service";
-import { ProductRotator } from "~/components/terminal/ProductRotator";
+import Products from "~/app/_components/products";
 import ShipmentTracker from "~/app/_components/shipment-tracker";
 import SystemStatus from "~/app/_components/system-status";
 import Console from "~/app/_components/console";
@@ -45,7 +45,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow">
         {/* Coffee Products Section - Tall vertical rectangle */}
-        <ProductRotator products={products} />
+        <Products products={products} />
 
         {/* Terminal Chat - Main focus in the middle */}
         <Console />
@@ -69,7 +69,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <footer className="mt-6 border-t-2 border-gray-700 pt-3 text-xs text-gray-500">
+      <footer className="mt-6 border-t-2 border-neutral-700 pt-3 text-xs text-neutral-500">
         <div className="flex justify-between">
           <span>TERMINAL COFFEE SYSTEM v1.0.5</span>
           <span>AUTHORIZED ACCESS ONLY • MONITORING ACTIVE</span>

@@ -9,7 +9,7 @@ interface ProductRotatorProps {
   products: Product[];
 }
 
-export function ProductRotator({ products }: ProductRotatorProps) {
+export default function Products({ products }: ProductRotatorProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -54,7 +54,7 @@ export function ProductRotator({ products }: ProductRotatorProps) {
   }, [products.length, resetTimer]);
 
   if (products.length === 0) {
-    return <div className="text-gray-400">No products available</div>;
+    return <div className="text-neutral-400">No products available</div>;
   }
 
   const activeProduct = products[activeIndex];
@@ -93,7 +93,7 @@ export function ProductRotator({ products }: ProductRotatorProps) {
                   ${activeProduct.price.toFixed(2)}
                 </p>
               </div>
-              <div className="text-gray-400 text-sm text-center max-w-[80%]">
+              <div className="text-neutral-400 text-sm text-center max-w-[80%]">
                 <p>{activeProduct.description}</p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export function ProductRotator({ products }: ProductRotatorProps) {
                     key={index}
                     onClick={() => handleDotClick(index)}
                     className={`h-2 w-2 rounded-full cursor-pointer hover:opacity-80 transition-opacity ${
-                      index === activeIndex ? "bg-orange-500" : "bg-gray-700"
+                      index === activeIndex ? "bg-orange-500" : "bg-neutral-700"
                     }`}
                   />
                 ))}

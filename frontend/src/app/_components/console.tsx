@@ -9,7 +9,7 @@ export default function Console() {
         <CardTitle className="text-orange-500">CONSOLE</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col">
-        <div className="flex-grow overflow-y-auto mb-3 p-3 border border-gray-700/70 bg-black/50 rounded-sm">
+        <div className="flex-grow overflow-y-auto mb-3 p-3 border border-neutral-700/70 bg-black/50 rounded-sm">
           <div className="space-y-4">
             <div className="text-[#f5f5dc]">
               <span className="text-xs text-orange-500">
@@ -27,7 +27,7 @@ export default function Console() {
                 New shipment alert: SH-2024-0452 dispatched to Seattle.
               </p>
             </div>
-            <div className="text-gray-300">
+            <div className="text-neutral-300">
               <span className="text-xs text-[#f5f5dc]">USER [08:46:10]:</span>
               <p className="ml-5 mt-1">Show inventory status</p>
             </div>
@@ -39,7 +39,7 @@ export default function Console() {
                 Inventory status displayed in COFFEE INVENTORY panel.
               </p>
             </div>
-            <div className="text-gray-300">
+            <div className="text-neutral-300">
               <span className="text-xs text-[#f5f5dc]">USER [08:47:30]:</span>
               <p className="ml-5 mt-1">Display recent shipments</p>
             </div>
@@ -55,7 +55,7 @@ export default function Console() {
         </div>
         <div className="flex gap-2">
           <Textarea
-            className="resize-none bg-black border-gray-700/70 text-[#f5f5dc] placeholder:text-gray-500"
+            className="resize-none bg-black border-neutral-700/70 text-[#f5f5dc] placeholder:text-neutral-500"
             placeholder="Enter command..."
             rows={2}
           />

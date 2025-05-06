@@ -3,6 +3,9 @@ import * as React from "react";
 import { cn } from "~/lib/utils";
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
+  const containerShadow =
+    "inset 0 1px 1px 0 hsla(0,0%,90%,.25),0 2px 40px 10px rgba(234,230,255,.03),0 0 16px -7px rgba(234,230,255,.03)";
+
   return (
     <div
       data-slot="card"
@@ -10,6 +13,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
         "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
         className
       )}
+      style={{ boxShadow: containerShadow, ...props.style }}
       {...props}
     />
   );

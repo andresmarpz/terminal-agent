@@ -27,14 +27,14 @@ export default function RecentClients() {
           ].map((client, i) => (
             <li
               key={i}
-              className="flex justify-between border-b border-dashed border-gray-700/70 pb-1"
+              className="flex justify-between border-b border-dashed border-neutral-700/70 pb-1"
             >
               <span className="text-[#f5f5dc]">{client.name}</span>
               <span
                 className={
                   client.status === "ACTIVE"
                     ? "text-orange-400"
-                    : "text-gray-300"
+                    : "text-neutral-300"
                 }
               >
                 {client.status}
