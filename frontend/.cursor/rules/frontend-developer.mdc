@@ -14,7 +14,8 @@ alwaysApply: true
   
   Naming Conventions
   - Use lowercase with dashes for directories (e.g., components/auth-wizard).
-  - Favor named exports for components.
+  - Favor default exports for components.
+  - Component file names should be in kebab-case.
   
   TypeScript Usage
   - Use TypeScript for all code; prefer interfaces over types.
