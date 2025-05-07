@@ -6,21 +6,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { ConsoleInput } from "./console-input";
 import { ConsoleMessages } from "./console-messages";
 
+type ThreadState = {
+  messages: Message[];
+};
+
 export default function Console() {
-  const { submit, messages, isLoading, error } = useStream<{
-    messages: Message[];
-    // You can define other parts of your state here if your agent returns more than messages
-  }>({
+  const { submit, messages, isLoading, error } = useStream<ThreadState>({
     apiUrl: process.env.NEXT_PUBLIC_AGENT_BASE_URL,
     assistantId: process.env.NEXT_PUBLIC_AGENT_ASSISTANT_ID!,
-    // streamMode: ["messages"], // streamMode is not a direct option for useStream hook itself, it's inferred by messagesKey
-    messagesKey: "messages", // This tells the hook to populate `messages` based on streamed message events
+    messagesKey: "messages",
   });
 
   const handleSubmit = (input: string) => {
-    submit({
-      messages: [{ type: "human", content: input, id: crypto.randomUUID() }],
-    });
+    submit(
+      {
+        messages: [{ type: "human", content: input }],
+      },
+      {
+        optimisticValues: (state) => ({
+          ...state,
+          messages: [
+            ...(state.messages ?? []),
+            { type: "human", content: input, id: "temporary-human-message" },
+            {
+              type: "ai",
+              content: "Thinking...",
+              id: "temporary-ai-message",
+            },
+          ],
+        }),
+      }
+    );
   };
 
   const displayMessages = messages || [];
@@ -51,7 +67,10 @@ export default function Console() {
             <p>Error: {errorMessage}</p>
           </div>
         )}
-        <ConsoleMessages messages={displayMessages} />
+        <ConsoleMessages
+          messages={displayMessages}
+          onExampleCommandSubmit={handleSubmit}
+        />
         <ConsoleInput onSubmit={handleSubmit} isLoading={isLoading} />
       </CardContent>
     </Card>
