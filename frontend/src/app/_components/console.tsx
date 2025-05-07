@@ -1,3 +1,4 @@
+import { CornerDownLeftIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Textarea } from "~/components/ui/textarea";
@@ -46,8 +47,16 @@ export default function Console() {
           </div>
         </div>
         <div className="flex gap-2">
-          <Textarea placeholder="Enter command..." rows={2} />
-          <Button>SEND</Button>
+          <Textarea
+            placeholder="Enter command..."
+            rows={3}
+            className="h-[4lh]"
+          />
+          <Button className="aspect-square h-[4lh] w-auto">
+            <div>
+              <CornerDownLeftIcon />
+            </div>
+          </Button>
         </div>
       </CardContent>
     </Card>

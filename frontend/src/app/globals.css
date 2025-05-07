@@ -115,6 +115,7 @@
 }
 
 .terminal {
+  --radius: 0.4rem;
   --background: oklch(0 0 0); /* Black */
   --foreground: oklch(0.961 0.015 105.01); /* Beige #f5f5dc */
   --card: oklch(0.05 0 0); /* Darker than background for cards */
