@@ -54,7 +54,7 @@ export default function Products({ products }: ProductRotatorProps) {
   }, [products.length, resetTimer]);
 
   if (products.length === 0) {
-    return <div className="text-neutral-400">No products available</div>;
+    return <div className="text-muted-foreground">No products available</div>;
   }
 
   const activeProduct = products[activeIndex];
@@ -62,7 +62,7 @@ export default function Products({ products }: ProductRotatorProps) {
   return (
     <Card className="lg:col-span-3 lg:row-span-2 flex flex-col">
       <CardHeader>
-        <CardTitle className="text-orange-500">COFFEE INVENTORY</CardTitle>
+        <CardTitle className="text-primary">COFFEE INVENTORY</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
         <div className="flex flex-col h-full">
@@ -83,17 +83,17 @@ export default function Products({ products }: ProductRotatorProps) {
                   />
                 </div>
               ) : (
-                <div className="text-6xl text-orange-400">☕</div>
+                <div className="text-6xl text-primary">☕</div>
               )}
               <div className="text-center">
-                <h3 className="text-[#f5f5dc] font-bold uppercase text-xl">
+                <h3 className="text-foreground font-bold uppercase text-xl">
                   {activeProduct.name}
                 </h3>
-                <p className="text-orange-400 text-2xl mt-2">
+                <p className="text-primary text-2xl mt-2">
                   ${activeProduct.price.toFixed(2)}
                 </p>
               </div>
-              <div className="text-neutral-400 text-sm text-center max-w-[80%]">
+              <div className="text-muted-foreground text-sm text-center max-w-[80%]">
                 <p>{activeProduct.description}</p>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function Products({ products }: ProductRotatorProps) {
                     key={index}
                     onClick={() => handleDotClick(index)}
                     className={`h-2 w-2 rounded-full cursor-pointer hover:opacity-80 transition-opacity ${
-                      index === activeIndex ? "bg-orange-500" : "bg-neutral-700"
+                      index === activeIndex ? "bg-primary" : "bg-muted"
                     }`}
                   />
                 ))}

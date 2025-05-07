@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant terminal (&:is(.terminal *));
 
 @theme inline {
   --color-background: var(--background);
@@ -110,6 +111,46 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.terminal {
+  --background: oklch(0 0 0); /* Black */
+  --foreground: oklch(0.961 0.015 105.01); /* Beige #f5f5dc */
+  --card: oklch(0.05 0 0); /* Darker than background for cards */
+  --card-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --popover: oklch(0.05 0 0); /* Darker than background for popovers */
+  --popover-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --primary: oklch(0.705 0.213 47.604); /* Orange-500 */
+  --primary-foreground: oklch(0 0 0); /* Black for text on primary */
+  --secondary: oklch(0.205 0 0); /* Dark Neutral (like neutral-900) */
+  --secondary-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --muted: oklch(0.371 0 0); /* Neutral-700 */
+  --muted-foreground: oklch(0.961 0.015 105.01 / 0.8); /* Beige 80% opacity */
+  --accent: oklch(0.705 0.213 47.604 / 0.5); /* Orange-500 50% opacity */
+  --accent-foreground: oklch(0.705 0.213 47.604); /* Orange-500 */
+  --destructive: oklch(0.704 0.191 22.216); /* From .dark theme */
+  --border: oklch(1 0 0 / 15%); /* White 15% opacity */
+  --input: oklch(0.15 0 0); /* Slightly lighter black for inputs */
+  --ring: oklch(0.805 0.213 47.604 / 0.6); /* Orange-500 50% opacity */
+
+  /* Chart colors - kept from .dark for now */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar colors - kept from .dark for now */
+  --sidebar: oklch(0.05 0 0); /* Darker than background for sidebar */
+  --sidebar-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --sidebar-primary: oklch(0.705 0.213 47.604); /* Orange-500 */
+  --sidebar-primary-foreground: oklch(0 0 0); /* Black */
+  --sidebar-accent: oklch(0.705 0.213 47.604 / 0.3); /* Lighter Orange Accent */
+  --sidebar-accent-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --sidebar-border: oklch(
+    0.705 0.213 47.604 / 0.2
+  ); /* Orange border 20% opacity */
+  --sidebar-ring: oklch(0.705 0.213 47.604 / 0.5); /* Orange-500 50% opacity */
 }
 
 @layer base {

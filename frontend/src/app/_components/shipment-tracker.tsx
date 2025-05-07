@@ -4,7 +4,7 @@ export default function ShipmentTracker() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-orange-500">SHIPMENT TRACKER</CardTitle>
+        <CardTitle className="text-primary">SHIPMENT TRACKER</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -24,21 +24,21 @@ export default function ShipmentTracker() {
           ].map((shipment, i) => (
             <div
               key={i}
-              className="border border-neutral-700/50 border-dashed p-2 rounded-sm bg-black/50"
+              className="border border-muted/50 border-dashed p-2 rounded-sm bg-background/50"
             >
-              <div className="flex justify-between text-xs text-neutral-400">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span>ID: {shipment.id}</span>
                 <span>ETA: {shipment.eta}</span>
               </div>
               <div className="flex justify-between mt-1">
-                <span className="text-[#f5f5dc]">{shipment.destination}</span>
+                <span className="text-foreground">{shipment.destination}</span>
                 <span
                   className={
                     shipment.status === "DELIVERED"
-                      ? "text-orange-400"
+                      ? "text-primary"
                       : shipment.status === "IN TRANSIT"
-                      ? "text-[#f5f5dc]"
-                      : "text-neutral-400"
+                      ? "text-foreground"
+                      : "text-muted-foreground"
                   }
                 >
                   {shipment.status}

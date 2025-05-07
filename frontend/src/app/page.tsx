@@ -15,27 +15,27 @@ export default async function Home() {
   const products = await getProducts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-[#f5f5dc] p-6 font-mono">
+    <div className="min-h-screen flex flex-col bg-background text-foreground p-6 font-mono">
       <header className="mb-6">
-        <div className="flex justify-between items-center border-b-2 border-orange-500/50 pb-3">
+        <div className="flex justify-between items-center border-b-2 border-accent pb-3">
           <div>
-            <h1 className="text-2xl font-bold text-orange-500">
+            <h1 className="text-2xl font-bold text-primary">
               TERMINAL COFFEE SYSTEM
             </h1>
-            <p className="text-xs text-[#f5f5dc]/80">
+            <p className="text-xs text-muted-foreground">
               ACCESS ID: C0F-F33-2023-05-08:12:45.621Z
             </p>
           </div>
           <div className="flex gap-2">
             <Button
               variant="outline"
-              className="border-orange-500 text-orange-500 hover:bg-orange-500/10"
+              className="border-primary text-primary hover:bg-primary/10"
             >
               STATUS
             </Button>
             <Button
               variant="outline"
-              className="border-orange-500 text-orange-500 hover:bg-orange-500/10"
+              className="border-primary text-primary hover:bg-primary/10"
             >
               EXPORT
             </Button>
@@ -69,7 +69,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <footer className="mt-6 border-t-2 border-neutral-700 pt-3 text-xs text-neutral-500">
+      <footer className="mt-6 border-t-2 border-muted pt-3 text-xs text-muted">
         <div className="flex justify-between">
           <span>TERMINAL COFFEE SYSTEM v1.0.5</span>
           <span>AUTHORIZED ACCESS ONLY • MONITORING ACTIVE</span>

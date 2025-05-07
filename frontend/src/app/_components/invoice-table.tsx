@@ -4,16 +4,16 @@ export default function InvoiceTable() {
   return (
     <Card className="lg:col-span-6">
       <CardHeader>
-        <CardTitle className="text-orange-500">INVOICES</CardTitle>
+        <CardTitle className="text-primary">INVOICES</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="border-b border-neutral-700">
-                <th className="pb-2 pr-4 text-[#f5f5dc]">INVOICE</th>
-                <th className="pb-2 pr-4 text-[#f5f5dc]">CLIENT</th>
-                <th className="pb-2 text-[#f5f5dc]">AMOUNT</th>
+              <tr className="border-b border-muted">
+                <th className="pb-2 pr-4 text-foreground">INVOICE</th>
+                <th className="pb-2 pr-4 text-foreground">CLIENT</th>
+                <th className="pb-2 text-foreground">AMOUNT</th>
               </tr>
             </thead>
             <tbody>
@@ -37,16 +37,16 @@ export default function InvoiceTable() {
                   status: "PAID",
                 },
               ].map((invoice, i) => (
-                <tr key={i} className="border-b border-neutral-800">
-                  <td className="py-2 pr-4 text-[#f5f5dc]">{invoice.id}</td>
-                  <td className="py-2 pr-4 text-neutral-400">
+                <tr key={i} className="border-b border-secondary">
+                  <td className="py-2 pr-4 text-foreground">{invoice.id}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">
                     {invoice.client}
                   </td>
                   <td
                     className={`py-2 ${
                       invoice.status === "PAID"
-                        ? "text-orange-400"
-                        : "text-[#f5f5dc]"
+                        ? "text-primary"
+                        : "text-foreground"
                     }`}
                   >
                     ${invoice.amount.toFixed(2)}

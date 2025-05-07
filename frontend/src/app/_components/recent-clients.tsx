@@ -4,7 +4,7 @@ export default function RecentClients() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-orange-500">RECENT CLIENTS</CardTitle>
+        <CardTitle className="text-primary">RECENT CLIENTS</CardTitle>
       </CardHeader>
       <CardContent>
         <ul className="space-y-2">
@@ -27,14 +27,14 @@ export default function RecentClients() {
           ].map((client, i) => (
             <li
               key={i}
-              className="flex justify-between border-b border-dashed border-neutral-700/70 pb-1"
+              className="flex justify-between border-b border-dashed border-muted/70 pb-1"
             >
-              <span className="text-[#f5f5dc]">{client.name}</span>
+              <span className="text-foreground">{client.name}</span>
               <span
                 className={
                   client.status === "ACTIVE"
-                    ? "text-orange-400"
-                    : "text-neutral-300"
+                    ? "text-primary"
+                    : "text-muted-foreground"
                 }
               >
                 {client.status}
