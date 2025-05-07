@@ -27,7 +27,8 @@ alwaysApply: true
   - Use declarative JSX.
   
   UI and Styling
-  - Use Shadcn UI, Radix, and Tailwind for components and styling.
+  - Use Shadcn UI, Radix, and Tailwind v4 for components and styling.
+  - Tailwind v4 uses the config inside [globals.css](mdc:src/app/globals.css).
   - Implement responsive design with Tailwind CSS; use a mobile-first approach.
   
   Performance Optimization
