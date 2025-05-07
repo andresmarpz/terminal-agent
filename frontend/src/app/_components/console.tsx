@@ -46,14 +46,8 @@ export default function Console() {
           </div>
         </div>
         <div className="flex gap-2">
-          <Textarea
-            className="resize-none bg-input border-muted/70 text-foreground placeholder:text-muted"
-            placeholder="Enter command..."
-            rows={2}
-          />
-          <Button className="bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30 self-end">
-            SEND
-          </Button>
+          <Textarea placeholder="Enter command..." rows={2} />
+          <Button>SEND</Button>
         </div>
       </CardContent>
     </Card>
