@@ -147,19 +147,13 @@
 
   /* Sidebar colors - kept from .dark for now */
   --sidebar: oklch(0.05 0 0); /* Darker than background for sidebar */
-  --sidebar-foreground: oklch(0.961 0.015 105.01); /* Beige */
-  --sidebar-primary: oklch(0.68 0.19 47.604); /* Orange-500, Toned Down */
-  --sidebar-primary-foreground: oklch(0 0 0); /* Black */
-  --sidebar-accent: oklch(
-    0.68 0.19 47.604 / 0.3
-  ); /* Lighter Orange Accent, Toned Down */
+  --sidebar-foreground: oklch(0.58 0.22 47.61 / 0.8); /* Beige */
+  --sidebar-primary: oklch(0.2 0.02 47.61); /* Orange-500 */
+  --sidebar-primary-foreground: oklch(0.961 0.015 105.01); /* Beige */
+  --sidebar-accent: oklch(0.68 0.19 47.604 / 0.3); /* Lighter Orange Accent*/
   --sidebar-accent-foreground: oklch(0.961 0.015 105.01); /* Beige */
-  --sidebar-border: oklch(
-    0.68 0.19 47.604 / 0.2
-  ); /* Orange border 20% opacity, Toned Down */
-  --sidebar-ring: oklch(
-    0.68 0.19 47.604 / 0.5
-  ); /* Orange-500 50% opacity, Toned Down */
+  --sidebar-border: oklch(0.68 0.19 47.604 / 0.2); /* Orange border */
+  --sidebar-ring: oklch(0.68 0.19 47.604 / 0.5); /* Orange-500 50% opacity*/
 }
 
 @layer base {
@@ -176,14 +170,14 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-primary;
+    @apply bg-sidebar-primary;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-muted-foreground;
+    @apply rounded-full bg-sidebar-foreground;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary;
+    @apply bg-sidebar-primary-foreground;
   }
 }
