@@ -15,8 +15,8 @@ export default async function Home() {
   const products = await getProducts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground p-6 font-mono">
-      <header className="mb-6">
+    <>
+      <header className="pb-6">
         <div className="flex justify-between items-center border-b-2 border-accent pb-3">
           <div>
             <h1 className="text-2xl font-bold text-primary">
@@ -43,7 +43,7 @@ export default async function Home() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-grow">
+      <div className="grid grid-cols-1 grid-rows-3 lg:grid-cols-12 gap-6 flex-grow min-h-0">
         {/* Coffee Products Section - Tall vertical rectangle */}
         <Products products={products} />
 
@@ -51,7 +51,7 @@ export default async function Home() {
         <Console />
 
         {/* Top right section */}
-        <div className="lg:col-span-3 grid grid-cols-1 gap-6">
+        <div className="lg:col-span-3 row-span-2 grid grid-cols-1 gap-6">
           {/* Recent Clients */}
           <RecentClients />
 
@@ -60,7 +60,7 @@ export default async function Home() {
         </div>
 
         {/* Bottom section */}
-        <div className="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-9 row-span-1 grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Invoice Table - Smaller */}
           <InvoiceTable />
 
@@ -75,6 +75,6 @@ export default async function Home() {
           <span>AUTHORIZED ACCESS ONLY • MONITORING ACTIVE</span>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

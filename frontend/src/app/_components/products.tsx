@@ -60,7 +60,7 @@ export default function Products({ products }: ProductRotatorProps) {
   const activeProduct = products[activeIndex];
 
   return (
-    <Card className="lg:col-span-3 lg:row-span-2 flex flex-col">
+    <Card className="lg:col-span-3 row-span-3 flex flex-col">
       <CardHeader>
         <CardTitle className="text-primary">COFFEE INVENTORY</CardTitle>
       </CardHeader>
