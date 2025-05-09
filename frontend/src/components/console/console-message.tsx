@@ -1,16 +1,23 @@
 "use client";
 
-import type { Message as StreamMessage } from "@langchain/langgraph-sdk";
-// Assuming TextContentPart might be a type for content array elements
-// import type { TextContentPart } from "@langchain/core/messages";
-import React from "react";
-
-// Removed CustomContentPart interface
+import type {
+  Message,
+  Message as StreamMessage,
+} from "@langchain/langgraph-sdk";
+import { cn } from "~/lib/utils";
 
 interface ConsoleMessageProps {
   message: StreamMessage;
-  // Removed onExampleCommandClick from props
 }
+
+const MESSAGE_TYPE_LABEL_MAP: Record<Message["type"], string> = {
+  ai: "ASSISTANT",
+  human: "USER",
+  system: "SYSTEM",
+  tool: "TOOL",
+  remove: "REMOVE",
+  function: "FUNCTION",
+};
 
 export function ConsoleMessage({ message }: ConsoleMessageProps) {
   const isUser = message.type === "human";
@@ -58,11 +65,13 @@ export function ConsoleMessage({ message }: ConsoleMessageProps) {
   return (
     <div className="text-foreground">
       <span
-        className={`text-xs ${
-          isUser ? "text-foreground" : "text-primary"
-        } select-none`}
+        className={cn(
+          "text-xs",
+          isUser ? "text-foreground" : "text-primary",
+          "select-none"
+        )}
       >
-        {isUser ? "USER" : message.type?.toUpperCase() || "SYSTEM"}:
+        {MESSAGE_TYPE_LABEL_MAP[message.type]}:
       </span>
       <div className="ml-5 mt-1 whitespace-pre-wrap">{renderedContent}</div>
     </div>

@@ -3,7 +3,7 @@ import { coffeeService } from "~/lib/services/coffee-service";
 import Products from "~/app/_components/products";
 import ShipmentTracker from "~/app/_components/shipment-tracker";
 import SystemStatus from "~/app/_components/system-status";
-import Console from "~/app/_components/console";
+import Console from "~/components/console/console";
 import RecentClients from "~/app/_components/recent-clients";
 import InvoiceTable from "~/app/_components/invoice-table";
 

@@ -1,3 +1,5 @@
+import { Button } from "~/components/ui/button";
+
 interface ConsoleWelcomeMessageProps {
   onExampleCommandClick?: (commandText: string) => void;
 }
@@ -35,16 +37,17 @@ export function ConsoleWelcomeMessage({
         <div className="space-y-0.5">
           {exampleCommands.map((command, index) => (
             <div key={index} className="flex items-baseline">
-              <span className="text-orange-500 mr-1.5 font-semibold select-none">
+              <span className="text-primary mr-1.5 font-semibold select-none">
                 &gt;
               </span>
               {onExampleCommandClick ? (
-                <button
+                <Button
+                  variant="link"
                   onClick={() => onExampleCommandClick(command)}
-                  className="text-left hover:underline hover:text-orange-400 hover:decoration-orange-400 focus:outline-none cursor-pointer underline-offset-2"
+                  className="h-auto p-0 text-left text-foreground hover:text-primary hover:underline transition-none"
                 >
                   {command}
-                </button>
+                </Button>
               ) : (
                 <span>{command}</span>
               )}
