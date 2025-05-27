@@ -101,3 +101,6 @@ To provide a user-friendly interface for interacting with the LangGraph agent.
 - The agent can correctly interpret requests and call the appropriate Coffee Backend Service APIs.
 - The agent can successfully perform all initial capabilities (create client, list products, create shipment, get SLA, get shipment count).
 - Data is correctly persisted and retrieved from the Coffee Backend Service's database.
+- 
+
+Note: this is an example repository and should NOT be used as a template.
